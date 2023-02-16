@@ -6,6 +6,17 @@ class Funcionario {
 	public $telefone = null;
 	public $numFilhos = null;
 
+	//Usando os metodos get e set magicos
+
+	function __set($atributo,$valor){
+		$this->$atributo = $valor;
+	}
+
+	function __get($atributo){
+		return $this->$atributo;
+	}
+
+	/*
 	function setNome($nome) {
 		$this->nome = $nome;
 	}
@@ -25,13 +36,15 @@ class Funcionario {
 	function exibirInformacoes(){
 		return "$this->nome tem $this->numFilhos filho(a)s";
 	}
+	*/
 
 }
 
 $x = new Funcionario();
-$x->setNome('André');
-$x->setNumFilhos(2);
-echo $x->exibirInformacoes();
+$x->__set('nome','André');
+$x->__set('numFilhos', 2);
+$x->__set('telefone', '00 97777-8888');
+echo 'Nome: '. $x->__get('nome') . '<br>Telefone: ' . $x->__get('telefone') . '<br>Filhos: ' . $x->__get('numFilhos');
 
 
 ?>
